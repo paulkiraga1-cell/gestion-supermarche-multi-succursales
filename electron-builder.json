@@ -1,0 +1,94 @@
+{
+  "appId": "com.multimarket.app",
+  "productName": "MultiMarket",
+  "directories": {
+    "output": "release",
+    "buildResources": "build"
+  },
+  "files": [
+    "dist",
+    "electron/*.js",
+    "!dist/stats.html",
+    "!**/*.{ts,spec.js,test.js}",
+    "!electron/*.map"
+  ],
+  "extraFiles": [
+    {
+      "from": "build/icon.ico",
+      "to": "icon.ico"
+    },
+    {
+      "from": "build/app-update.yml",
+      "to": "resources/app-update.yml"
+    }
+  ],
+  "extraMetadata": {
+    "main": "electron/main.js"
+  },
+  "compression": "maximum",
+  "removePackageScripts": true,
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "Christianzer",
+      "repo": "MultiMarket",
+      "vPrefixedTagName": true,
+      "releaseType": "release"
+    }
+  ],
+  "linux": {
+    "target": "AppImage",
+    "category": "Office",
+    "icon": "build/icon.png"
+  },
+  "mac": {
+    "target": "dmg",
+    "category": "public.app-category.business",
+    "icon": "build/icon.icns"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icon.ico",
+    "verifyUpdateCodeSignature": false,
+    "requestedExecutionLevel": "asInvoker",
+    "signAndEditExecutable": false,
+    "legalTrademarks": "MultiMarket",
+    "compression": "maximum",
+    "artifactName": "${productName}-Setup-${version}.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "installerIcon": "build/icon.ico",
+    "uninstallerIcon": "build/icon.ico",
+    "installerHeaderIcon": "build/icon.ico",
+    "shortcutName": "MultiMarket",
+    "runAfterFinish": true,
+    "deleteAppDataOnUninstall": false,
+    "differentialPackage": true,
+    "packElevateHelper": false,
+    "perMachine": false,
+    "allowElevation": true
+  },
+  "directories": {
+    "buildResources": "build",
+    "output": "release"
+  },
+  "buildDependenciesFromSource": false,
+  "nodeGypRebuild": false,
+  "npmRebuild": false,
+  "generateUpdatesFilesForAllChannels": true,
+  "releaseInfo": {
+    "releaseNotes": "Mise à jour avec optimisations de performance et sécurité améliorée.",
+    "releaseName": "${productName} v${version}"
+  },
+  "afterSign": null,
+  "afterPack": null
+}
